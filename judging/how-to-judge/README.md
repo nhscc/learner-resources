@@ -41,7 +41,7 @@ follow these steps first and watch the presentation video only after step 4.**
 3. Once you've booted up their virtual machine, follow the instructions given in
    the team's Reviewr submission under `RUN AND ACCESS INSTRUCTIONS` and `LOGIN
    AND (BRIEF) FEATURE USE INSTRUCTIONS` to run their solution. Use the browser
-   given under `BROWSER CHOICE` to access their solution. Note that paths tothe
+   given under `BROWSER CHOICE` to access their solution. Note that paths to the
    solution's source code can be found under `SOURCE CODE PATH(S)`; any login
    credentials you might need for the solution as well as the presentation video
    can be found under `LOGIN CREDENTIALS AND VIDEO PRESENTATION`.
@@ -54,7 +54,7 @@ follow these steps first and watch the presentation video only after step 4.**
    difficulties you encounter or concerns you have through Slack.
 
    > Note: if you need to, you can download extra programs like VS Code if it
-   > makes judging the teams' solutions easier for you.
+   > makes judging a team's solution easier for you.
 
    > **You should not modify any solution's source code.** If a solution does
    > not work for whatever reason, or if functionality cannot be verified (e.g.
@@ -66,11 +66,10 @@ follow these steps first and watch the presentation video only after step 4.**
    scores accordingly.
 
 6. Allow any unanswered questions or nagging concerns to guide you as you look
-   over and finalize your judgement of this solution.
-
-   **Be sure to add any issues you think the other judges should be made aware
-   of to Reviewr's shared "judge comments" textarea. Sharing your insights and
-   concerns about this solution will improve the judging process overall.
+   over and finalize your judgement of this solution. Be sure to add any issues
+   you think the other judges should be made aware of to Reviewr's shared "judge
+   comments" textarea. Sharing your insights and concerns about this solution
+   will improve the judging process overall.
 
 7. Finally, submit your scores for this team through Reviewr.
 
