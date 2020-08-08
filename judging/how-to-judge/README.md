@@ -10,7 +10,7 @@ These are instructions for how to judge part 1 and part 2 submissions.
 - A computer with internet access that you can install AWS WorkSpaces on
 - The names and Reviewr submission data of the teams whose solutions you're
   responsible for judging
-- If you're a Code judge: sufficient programming experience in JavaScript, PHP,
+- If you're a code judge: sufficient programming experience in JavaScript, PHP,
   and/or Java
   - If you're assigned a project using a programming language you're unfamiliar
     with, let us know.
