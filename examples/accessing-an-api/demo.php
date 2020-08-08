@@ -38,7 +38,7 @@ $makeGETRequest = function($url) use (&$makeGETRequest) {
         return $makeGETRequest($url);
 
     else
-        throw new Exception("Bad API response (status $status)");
+        throw new Exception("Bad API response (status $status): {$json['error']}");
 };
 
 $getAirports = function() use (&$makeGETRequest, &$buildAPIURI) {
@@ -77,16 +77,23 @@ $echoFlights = function($flights) {
     }
 };
 
-echo("\n10th airport:\n");
-$tenthAp = $getAirports()[9];
-echo("${tenthAp['name']} (${tenthAp['shortName']}) @ ${tenthAp['city']}, ${tenthAp['state']}\n");
+try {
+    $tenthAp = $getAirports()[9];
+    $flights1 = $searchFlights(['status' => 'landed|arrived|boarding']);
+    $flights2 = $searchFlights(['status' => 'landed|arrived|boarding' ], end($flights1)['flight_id']);
 
-echo("\nFlights currently on the ground (landed, arrived, boarding):\n");
-echo("[page 1]\n");
-$flights1 = $searchFlights([ 'status' => 'landed|arrived|boarding' ]);
-$echoFlights($flights1);
-echo("[page 2]\n");
-$flights2 = $searchFlights(['status' => 'landed|arrived|boarding' ], end($flights1)['flight_id']);
-$echoFlights($flights2);
+    echo("\n10th airport:\n");
+    echo("${tenthAp['name']} (${tenthAp['shortName']}) @ ${tenthAp['city']}, ${tenthAp['state']}\n");
 
-# How might we get all the pages of results?
+    echo("\nFlights currently on the ground (landed, arrived, boarding):\n");
+    echo("[page 1]\n");
+    $echoFlights($flights1);
+    echo("[page 2]\n");
+    $echoFlights($flights2);
+
+    # How might we get all the pages of results?
+}
+
+catch(\Throwable $e) {
+    echo("ERROR: {$e->getMessage()}");
+}
