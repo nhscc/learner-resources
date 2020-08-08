@@ -49,6 +49,10 @@ follow these steps first and watch the presentation video only after step 4.**
    > Note: if any of this information is missing or incorrect, let NHSCC staff
    > know immediately via Slack.
 
+4. Follow the instructions given in the digital rubric to judge the submission,
+   assigning scores to each requirement/category. Let us know of any
+   difficulties you encounter or concerns you have through Slack.
+
    > Note: if you need to, you can download extra programs like VS Code if it
    > makes judging the teams' solutions easier for you.
 
@@ -56,10 +60,6 @@ follow these steps first and watch the presentation video only after step 4.**
    > not work for whatever reason, or if functionality cannot be verified (e.g.
    > if the login screen is broken and you can't access the rest of the app),
    > solutions should be scored 0 for all affected requirements.
-
-4. Follow the instructions given in the digital rubric to judge the submission,
-   assigning scores to each requirement/category. Let us know of any
-   difficulties you encounter or concerns you have through Slack.
 
 5. Once you are done with your preliminary scoring, and only if you haven't
    already, watch the presentation video submitted by this team. Revise any
