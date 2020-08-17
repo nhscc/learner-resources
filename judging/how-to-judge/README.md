@@ -33,7 +33,9 @@ follow these steps first and watch the presentation video only after step 4.**
 
 2. All AWS WorkSpaces should have been restarted and had their credentials
    changed. You will be provided the credentials and information for the teams
-   you were assigned to review. For the team you're judging, enter their credentials (registration code, username, and password) into the AWS WorkSpaces client to login to their virtual machine.
+   you were assigned to review. For the team you're judging, enter their
+   credentials (registration code, username, and password) into the AWS
+   WorkSpaces client to login to their virtual machine.
 
    > Note that you may not have to enter the registration code more than once
    > since it does not change between teams.
@@ -49,7 +51,7 @@ follow these steps first and watch the presentation video only after step 4.**
    > Note: if any of this information is missing or incorrect, let NHSCC staff
    > know immediately via Slack.
 
-4. Follow the instructions given in the digital rubric to judge the submission,
+4. Follow the instructions given in the Reviewr rubric to judge the submission,
    assigning scores to each requirement/category. Let us know of any
    difficulties you encounter or concerns you have through Slack.
 
@@ -60,6 +62,9 @@ follow these steps first and watch the presentation video only after step 4.**
    > not work for whatever reason, or if functionality cannot be verified (e.g.
    > if the login screen is broken and you can't access the rest of the app),
    > solutions should be scored 0 for all affected requirements.
+
+   > However, **you can modify data in a solution's database**. For example: to
+   > give your account tickets on an upcoming flight to test a check-in view.
 
 5. Once you are done with your preliminary scoring, and only if you haven't
    already, watch the presentation video submitted by this team. Revise any
