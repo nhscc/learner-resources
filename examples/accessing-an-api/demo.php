@@ -2,13 +2,13 @@
 const APP_API_KEY = 'your-special-api-key-here';
 const APP_API_ROOT_URI = 'https://airports.api.hscc.bdpa.org/v1';
 
-echo("loading...\n");
+echo ("loading...\n");
 
-$buildAPIURI = function($endpoint) {
+$buildAPIURI = function ($endpoint) {
     return APP_API_ROOT_URI . '/' . $endpoint;
 };
 
-$makeGETRequest = function($url) use (&$makeGETRequest) {
+$makeGETRequest = function ($url) use (&$makeGETRequest) {
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -31,47 +31,47 @@ $makeGETRequest = function($url) use (&$makeGETRequest) {
     $status = $info['http_code'];
     $json = json_decode($response, true);
 
-    if($status == 200)
+    if ($status == 200)
         return $json;
 
-    else if($status == 555)
+    else if ($status == 555)
         return $makeGETRequest($url);
 
     else
         throw new Exception("Bad API response (status $status): {$json['error']}");
 };
 
-$getAirports = function() use (&$makeGETRequest, &$buildAPIURI) {
+$getAirports = function () use (&$makeGETRequest, &$buildAPIURI) {
     return $makeGETRequest($buildAPIURI('info/airports'))['airports'];
 };
 
 
-$searchFlights = function($rawMatchCriteria = NULL, $afterId = NULL) use (&$makeGETRequest, &$buildAPIURI) {
+$searchFlights = function ($rawMatchCriteria = NULL, $afterId = NULL) use (&$makeGETRequest, &$buildAPIURI) {
     $match = '';
     $after = '';
 
-    if($rawMatchCriteria) {
+    if ($rawMatchCriteria) {
         $json = json_encode($rawMatchCriteria);
 
-        if(!$json)
+        if (!$json)
             throw new Exception('Bad raw regexMatch criteria provided');
 
         $match = 'regexMatch=' . rawurlencode($json);
     }
 
-    if($afterId)
+    if ($afterId)
         $after = '&after=' . $afterId;
 
     $query = trim("$match$after", '&');
     return $makeGETRequest($buildAPIURI("flights/search?$query"))['flights'];
 };
 
-$echoFlights = function($flights) {
-    foreach($flights as $key => $flight) {
-        echo("Flight ${flight['flightNumber']} from ${flight['comingFrom']} to ${flight['landingAt']} (${flight['type']}, ${flight['status']}) is at gate ${flight['gate']}");
+$echoFlights = function ($flights) {
+    foreach ($flights as $key => $flight) {
+        echo ("Flight ${flight['flightNumber']} from ${flight['comingFrom']} to ${flight['landingAt']} (${flight['type']}, ${flight['status']}) is at gate ${flight['gate']}");
 
-        if($flight['type'] == 'departure')
-            echo(" departing to ${flight['departingTo']}");
+        if ($flight['type'] == 'departure')
+            echo (" departing to ${flight['departingTo']}");
 
         echo "\n";
     }
@@ -80,20 +80,18 @@ $echoFlights = function($flights) {
 try {
     $tenthAp = $getAirports()[9];
     $flights1 = $searchFlights(['status' => 'landed|arrived|boarding']);
-    $flights2 = $searchFlights(['status' => 'landed|arrived|boarding' ], end($flights1)['flight_id']);
+    $flights2 = $searchFlights(['status' => 'landed|arrived|boarding'], end($flights1)['flight_id']);
 
-    echo("\n10th airport:\n");
-    echo("${tenthAp['name']} (${tenthAp['shortName']}) @ ${tenthAp['city']}, ${tenthAp['state']}\n");
+    echo ("\n10th airport:\n");
+    echo ("${tenthAp['name']} (${tenthAp['shortName']}) @ ${tenthAp['city']}, ${tenthAp['state']}\n");
 
-    echo("\nFlights currently on the ground (landed, arrived, boarding):\n");
-    echo("[page 1]\n");
+    echo ("\nFlights currently on the ground (landed, arrived, boarding):\n");
+    echo ("[page 1]\n");
     $echoFlights($flights1);
-    echo("[page 2]\n");
+    echo ("[page 2]\n");
     $echoFlights($flights2);
 
     # How might we get all the pages of results?
-}
-
-catch(\Throwable $e) {
-    echo("ERROR: {$e->getMessage()}");
+} catch (Throwable $e) {
+    echo ("ERROR: {$e->getMessage()}");
 }
