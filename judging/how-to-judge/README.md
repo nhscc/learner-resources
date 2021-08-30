@@ -41,12 +41,13 @@ follow these steps first and watch the presentation video only after step 4.**
    > since it does not change between teams.
 
 3. Once you've booted up their virtual machine, follow the instructions given in
-   the team's Reviewr submission under `RUN AND ACCESS INSTRUCTIONS` and `LOGIN
-   AND (BRIEF) FEATURE USE INSTRUCTIONS` to run their solution. Use the browser
-   given under `BROWSER CHOICE` to access their solution. Note that paths to the
-   solution's source code can be found under `SOURCE CODE PATH(S)`; any login
-   credentials you might need for the solution as well as the presentation video
-   can be found under `LOGIN CREDENTIALS AND VIDEO PRESENTATION`.
+   the team's Reviewr submission under `RUN AND ACCESS INSTRUCTIONS` and
+   `LOGIN AND (BRIEF) FEATURE USE INSTRUCTIONS` to run their solution. Use the
+   browser given under `BROWSER CHOICE` to access their solution. Note that
+   paths to the solution's source code can be found under `SOURCE CODE PATH(S)`;
+   any login credentials you might need for the solution as well as the
+   presentation video can be found under
+   `LOGIN CREDENTIALS AND VIDEO PRESENTATION`.
 
    > Note: if any of this information is missing or incorrect, let NHSCC staff
    > know immediately via Slack.

@@ -39,14 +39,11 @@ const getAirports = async () =>
   (await makeGETRequest(buildAPIURI('info/airports'))).json.airports;
 
 const searchFlights = async (matchCriteria, afterId) => {
-  const match = matchCriteria
-    ? `regexMatch=${JSON.stringify(matchCriteria)}`
-    : '';
+  const match = matchCriteria ? `regexMatch=${JSON.stringify(matchCriteria)}` : '';
   const after = afterId ? `after=${JSON.stringify(afterId)}` : '';
   const query = `${match}&${after}`.replace(/^&+|&+$/g, '');
 
-  return (await makeGETRequest(buildAPIURI(`flights/search?${query}`))).json
-    .flights;
+  return (await makeGETRequest(buildAPIURI(`flights/search?${query}`))).json.flights;
 };
 
 const echoFlights = (flights) =>
@@ -80,9 +77,7 @@ const echoFlights = (flights) =>
       `${tenthAp.name} (${tenthAp.shortName}) @ ${tenthAp.city}, ${tenthAp.state}`
     );
 
-    console.info(
-      '\nFlights currently on the ground (landed, arrived, boarding):'
-    );
+    console.info('\nFlights currently on the ground (landed, arrived, boarding):');
 
     console.info('[part1]');
     echoFlights(flights1);

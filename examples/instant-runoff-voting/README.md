@@ -1,8 +1,7 @@
 # Instant Runoff Voting
 
-This is an example implementation of the functionality required by the [2019
-problem
-statement](https://github.com/nhscc/problem-statements/blob/master/2019/bdpa-elections-part-1.md).
+This is an example implementation of the functionality required by the
+[2019 problem statement](https://github.com/nhscc/problem-statements/blob/master/2019/bdpa-elections-part-1.md).
 
 The relevant PHP code is only 80 lines without the comments and explanations.
 The IRV logic by itself is only 40 lines by the same metric. The rest of this
