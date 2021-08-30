@@ -9,6 +9,38 @@ This document details a general blueprint and current best practices for running
 the Black Data Processing Association's (BDPA) national High School Computer
 Competition (HSCC).
 
+## Contents
+
+- [What Is The High School Computer Competition?](#what-is-the-high-school-computer-competition)
+- [Guiding Principles](#guiding-principles)
+  - [Solving Problem Statements (PS1) Is a Chapter-Wide Effort](#solving-problem-statements-ps1-is-a-chapter-wide-effort)
+  - [Problem Statements Are Modern and Realistic](#problem-statements-are-modern-and-realistic)
+  - [Problem Statements Foster Community Between HSCC/SITES Students](#problem-statements-foster-community-between-hsccsites-students)
+- [Actors](#actors)
+  - [HSCC National Team](#hscc-national-team)
+    - [Chief Judge](#chief-judge)
+    - [Quizmaster](#quizmaster)
+  - [Judge](#judge)
+  - [Student](#student)
+  - [Competition Team](#competition-team)
+  - [Coordinator](#coordinator)
+  - [Coach, Chaperone, or Parent](#coach-chaperone-or-parent)
+- [Layout](#layout)
+  - [Pre-Conference Phase](#pre-conference-phase)
+    - [Fully Virtual vs Hybrid](#fully-virtual-vs-hybrid)
+  - [Phase 1: The Release of Problem Statement 1 (PS1)](#phase-1-the-release-of-problem-statement-1-ps1)
+  - [Phase 2: The Release of Problem Statement 2 (PS2)](#phase-2-the-release-of-problem-statement-2-ps2)
+  - [Phase 3: Standard Examination](#phase-3-standard-examination)
+  - [Phase 4: Team Presentations](#phase-4-team-presentations)
+  - [Post-Competition Phase](#post-competition-phase)
+    - [Score Calculation](#score-calculation)
+- [Rules](#rules)
+- [Judging](#judging)
+  - [Selecting Judges](#selecting-judges)
+  - [Training Judges](#training-judges)
+  - [Solution Review](#solution-review)
+- [Threat Model](#threat-model)
+
 ## What Is The High School Computer Competition?
 
 Throughout the year, [local BDPA chapters](https://bdpa.org/about-us) conduct
@@ -78,7 +110,7 @@ HSCC might be a "competition," but it is paramount students learn about and
 network with each other—_the future of computer science_! Any problem statement
 must be designed with this in mind. For instance: students from different teams
 might notice one another's presence when interacting with a problem statement's
-[globally available API backing store](https://github.com/nhscc/ghostmeme.api.hscc.bdpa.org).
+[globally available backing store](https://github.com/nhscc/ghostmeme.api.hscc.bdpa.org).
 
 ## Actors
 
@@ -88,26 +120,86 @@ competition is [fully virtual or hybrid](#fully-virtual-vs-hybrid).
 
 ### HSCC National Team
 
+The HSCC national team is responsible for running the competition portion of the
+national conference and includes the [chief judge](#chief-judge),
+[quizmaster](#quizmaster), and other vital officials.
+
 #### Chief Judge
+
+The chief judge ensures the smooth operation of the entire competition.
+Responsibilities include: drafting, managing, and releasing problem statements;
+answering or redirecting any questions from other actors; determining
+student/team participation eligibility; awarding extensions/allowances when
+extenuating circumstances occur; crafting and enforcing competition rules;
+onboarding and supporting judges at various points throughout the competition;
+ensuring final scores are calculated fairly; ensuring judges are not partial to
+any particular team; ensuring judges do not skew the final score distribution
+for invalid reasons.
+
+#### Quizmaster
+
+The quizmaster is responsible for setting up, answering questions about, and
+enforcing the rules around the
+[Standard Examination](#phase-3-standard-examination).
 
 ### Judge
 
 Judges are tasked with evaluating teams' solutions, receiving teams'
 presentations, and,
 [if the conference is not virtual](#fully-virtual-vs-hybrid), observing how team
-members interact with one another and work together to come up with a solution.
+members interact and work together to come up with a solution. Judges can also
+issue demerits for rule violations at any point during the competition
+(including the run up _before_ the national conference), such as for rude
+behavior or failure to turn in paperwork on time.
+
+Judges do not have to be BDPA members.
 
 ### Student
 
+A student is a current member of a local BDPA chapter and SITES training program
+participant, is fully registered, and is planning to compete in the HSCC as part
+of a [competition team](#competition-team). Students can also participate in
+other events at the national conference, such as
+[YTC workshops](https://bdpa.site-ym.com/page/YTC).
+
+Students must be members of their local chapters.
+
 ### Competition Team
+
+A competition team is composed of several [students](#student) from the same
+local chapter. Competition teams, rather than individual students, compete
+against each other in the HSCC.
 
 ### Coordinator
 
-### Chaperone, Coach, or Parent
+A coordinator is the primary point of contact between the
+[national team](#hscc-national-team) and a chapter. Coordinators are expected to
+attend _coordinator meetings_ (usually held monthly in the lead up to the
+competition), have ultimate responsibility for the behavior of their teams for
+the duration of the national conference, remain abreast of announcements and
+information related to HSCC (usually disseminated over Slack and email), and
+ensure their [competition teams](#competition-team) submit their solutions on
+time.
 
-## Competition Layout
+Note that a chapter's coordinator can play the dual role of chapter president,
+[coach](#chaperone-coach-or-parent), or even [_student_](#student).
 
-### Pre-Competition Phase
+### Coach, Chaperone, or Parent
+
+A coach/parent or other volunteer is a person associated with a chapter and
+attending the national conference who also takes responsibility for the behavior
+of their team. When [non-virtual](#fully-virtual-vs-hybrid), this actor is
+responsible for shuttling their students to and from their hotel rooms,
+supervising activity outside of the competition space (including taking their
+students out to eat), escorting students to and from the washroom when
+necessary, reporting any rule infractions or violations to the judges, and
+ensuring their students have fun.
+
+Coaches, chaperones, and/or parents do not necessarily have to be BDPA members.
+
+## Layout
+
+### Pre-Conference Phase
 
 #### Fully Virtual vs Hybrid
 
@@ -123,15 +215,17 @@ members interact with one another and work together to come up with a solution.
 
 #### Score Calculation
 
-## Rules for Participating Teams
+## Rules
 
 1. A chapter can send at most `1` teams
 2. Teams are allowed
 
-## Judge Selection and Solution Review
+## Judging
 
 ### Selecting Judges
 
 ### Training Judges
+
+### Solution Review
 
 ## Threat Model
