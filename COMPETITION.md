@@ -26,14 +26,14 @@ Competition (HSCC).
   - [Coordinator](#coordinator)
   - [Coach, Chaperone, or Parent](#coach-chaperone-or-parent)
 - [Layout](#layout)
-  - [Pre-Conference Phase](#pre-conference-phase)
-    - [Fully Virtual vs Hybrid](#fully-virtual-vs-hybrid)
-  - [Phase 1: The Release of Problem Statement 1 (PS1)](#phase-1-the-release-of-problem-statement-1-ps1)
-  - [Phase 2: The Release of Problem Statement 2 (PS2)](#phase-2-the-release-of-problem-statement-2-ps2)
-  - [Phase 3: Standard Examination](#phase-3-standard-examination)
-  - [Phase 4: Team Presentations](#phase-4-team-presentations)
-  - [Post-Competition Phase](#post-competition-phase)
-    - [Score Calculation](#score-calculation)
+  - [A "Fully Virtual" vs "Hybrid" Competition](#a-fully-virtual-vs-hybrid-competition)
+  - [Competition Phases](#competition-phases)
+    - [Pre-Conference Phase](#pre-conference-phase)
+    - [Phase 1: The Release of Problem Statement 1 (PS1)](#phase-1-the-release-of-problem-statement-1-ps1)
+    - [Phase 2: The Release of Problem Statement 2 (PS2)](#phase-2-the-release-of-problem-statement-2-ps2)
+    - [Phase 3: Standard Examination](#phase-3-standard-examination)
+    - [Phase 4: Team Presentations](#phase-4-team-presentations)
+    - [Post-Competition Phase](#post-competition-phase)
 - [Rules](#rules)
 - [Judging](#judging)
   - [Selecting Judges](#selecting-judges)
@@ -116,7 +116,8 @@ might notice one another's presence when interacting with a problem statement's
 
 There are several actors involved at various phases throughout the competition.
 The roles of certain actors (like judges) can change depending on if the
-competition is [fully virtual or hybrid](#fully-virtual-vs-hybrid).
+competition is
+[fully virtual or hybrid](#a-fully-virtual-vs-hybrid-competition).
 
 ### HSCC National Team
 
@@ -146,11 +147,11 @@ enforcing the rules around the
 
 Judges are tasked with evaluating teams' solutions, receiving teams'
 presentations, and,
-[if the conference is not virtual](#fully-virtual-vs-hybrid), observing how team
-members interact and work together to come up with a solution. Judges can also
-issue demerits for rule violations at any point during the competition
-(including the run up _before_ the national conference), such as for rude
-behavior or failure to turn in paperwork on time.
+[if the conference is not virtual](#a-fully-virtual-vs-hybrid-competition),
+observing how team members interact and work together to come up with a
+solution. Judges can also issue demerits for rule violations at any point during
+the competition (including the run up _before_ the national conference), such as
+for rude behavior or failure to turn in paperwork on time.
 
 Judges do not have to be BDPA members.
 
@@ -188,8 +189,8 @@ Note that a chapter's coordinator can play the dual role of chapter president,
 
 A coach/parent or other volunteer is a person associated with a chapter and
 attending the national conference who also takes responsibility for the behavior
-of their team. When [non-virtual](#fully-virtual-vs-hybrid), this actor is
-responsible for shuttling their students to and from their hotel rooms,
+of their team. When [non-virtual](#a-fully-virtual-vs-hybrid-competition), this
+actor is responsible for shuttling their students to and from their hotel rooms,
 supervising activity outside of the competition space (including taking their
 students out to eat), escorting students to and from the washroom when
 necessary, reporting any rule infractions or violations to the judges, and
@@ -199,28 +200,51 @@ Coaches, chaperones, and/or parents do not necessarily have to be BDPA members.
 
 ## Layout
 
-### Pre-Conference Phase
+### A "Fully Virtual" vs "Hybrid" Competition
 
-#### Fully Virtual vs Hybrid
+Everything is described as if fully virtual. Any special considerations
+necessary when holding a hybrid competition are noted under each phase.
 
-### Phase 1: The Release of Problem Statement 1 (PS1)
+<!-- TODO: wording -->
 
-### Phase 2: The Release of Problem Statement 2 (PS2)
+### Competition Phases
 
-### Phase 3: Standard Examination
+#### Pre-Conference Phase
 
-### Phase 4: Team Presentations
+##### Hybrid Competition Guidance
 
-### Post-Competition Phase
+#### Phase 1: The Release of Problem Statement 1 (PS1)
 
-#### Score Calculation
+##### Hybrid Competition Guidance
+
+#### Phase 2: The Release of Problem Statement 2 (PS2)
+
+##### Hybrid Competition Guidance
+
+#### Phase 3: Standard Examination
+
+##### Hybrid Competition Guidance
+
+#### Phase 4: Team Presentations
+
+##### Hybrid Competition Guidance
+
+#### Post-Competition Phase
+
+##### Score Calculation
+
+##### Hybrid Competition Guidance
 
 ## Rules
 
 1. A chapter can send at most `1` teams
 2. Teams are allowed
 
+<!-- TODO: include hybrid guidance -->
+
 ## Judging
+
+<!-- TODO: include hybrid guidance -->
 
 ### Selecting Judges
 
@@ -229,3 +253,5 @@ Coaches, chaperones, and/or parents do not necessarily have to be BDPA members.
 ### Solution Review
 
 ## Threat Model
+
+<!-- TODO: include hybrid guidance -->
