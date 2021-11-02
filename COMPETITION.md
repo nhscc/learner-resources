@@ -236,14 +236,14 @@ necessary when holding a hybrid competition are noted under each phase.
 
 ##### Hybrid Competition Guidance
 
-## Submissions
-
 ## Rules
 
 1. A chapter can send at most `1` teams
 2. Teams are allowed
 
 <!-- TODO: include hybrid guidance -->
+
+## Submissions
 
 ## Judging
 
