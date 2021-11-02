@@ -35,6 +35,7 @@ Competition (HSCC).
     - [Phase 4: Team Presentations](#phase-4-team-presentations)
     - [Post-Competition Phase](#post-competition-phase)
 - [Rules](#rules)
+- [Submissions](#submissions)
 - [Judging](#judging)
   - [Selecting Judges](#selecting-judges)
   - [Training Judges](#training-judges)
@@ -234,6 +235,8 @@ necessary when holding a hybrid competition are noted under each phase.
 ##### Score Calculation
 
 ##### Hybrid Competition Guidance
+
+## Submissions
 
 ## Rules
 
