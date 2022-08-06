@@ -99,18 +99,18 @@ Judging PS2 submissions is very similar to judging PS1 submissions.
 
 ### What You Need
 
-- One or more contiguous blocks of free time (usually an hour or less)
+- One or more contiguous blocks of free time (usually an hour or less).
   - It is imperative that PS2 solutions are judged **as soon as possible**
-  (typically within 24 hours) due to scheduling constraints
-- A computer with internet access that you can install AWS WorkSpaces on
+  (typically within 24 hours) due to scheduling constraints.
+- A computer with internet access that you can install AWS WorkSpaces on.
 - The names and Reviewr submission data of the teams whose solutions you're
-  responsible for judging
+  responsible for judging.
 - If you're a code judge: sufficient programming experience in JavaScript, PHP,
-  and/or Java
+  and/or Java.
   - If you're assigned a project using a programming language you're unfamiliar
     with, let us know.
 - Experience with web/app design and what makes a good website versus a bad
-  website
+  website.
 
 ### Judging a Solution
 
