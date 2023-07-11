@@ -52,7 +52,7 @@ Step 7: Cleanup WorkSpaces
      randomly generated password, and the shared registration code.
 
    - Ensure one row exists for the **judge-specific password**. This must be a
-     secure 3-character password and it must not be reused year-to-year. This
+     secure 30-character password and it must not be reused year-to-year. This
      password is used by judges to access the workspaces after submissions have
      closed for a phase.
 
@@ -63,7 +63,7 @@ Step 7: Cleanup WorkSpaces
 
 2. Navigate to `Services > WorkSpaces` from the Services menu.
 
-3. [Create a Active Directory and each of the WorkSpaces](https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspace-simple-ad.html).
+3. [Create an Active Directory and each of the WorkSpaces](https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspace-simple-ad.html).
    Be sure to record the administrator password for the directory in case it is
    needed later.
 
@@ -118,7 +118,8 @@ Step 7: Cleanup WorkSpaces
 
 2. Report
    [projected monthly and total costs](https://aws.amazon.com/aws-cost-management/aws-cost-explorer/)
-   (with respect to the "stop time") to NHSCC as early as possible.
+   (with respect to the "stop time") and "stop time" to NHSCC as early as
+   possible.
 
 3. Distribute WorkSpaces credentials and setup instructions to teams via Slack
    direct message to each chapter's coordinator. Use the following message
