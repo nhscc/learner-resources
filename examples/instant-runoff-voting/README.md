@@ -17,8 +17,8 @@ You can run this example locally without Apache or any server by running the
 following in the Windows command line or Linux shell:
 
 ```
-php -S localhost:8080 demo.php
+php -S 0.0.0.0:8080 demo.php
 ```
 
 You can access the resulting page by navigating your browser to
-http://localhost:8080.
+http://localhost:8080 or http://127.0.0.1:8080.
