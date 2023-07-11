@@ -5,13 +5,14 @@ These are instructions for how to judge part 1 and part 2 submissions.
 ## General advice
 
 - Be suspicious of front-end only authentication, or authentication schemes
-implemented on the front-end that go through the application's backend first.
-- Contact NHSCC staff via Slack if you need to manipulate data in the API backend
-(separate from the application's backend) to properly test some functionality.
+  implemented on the front-end that go through the application's backend first.
+- Contact NHSCC staff via Slack if you need to manipulate data in the API
+  backend (separate from the application's backend) to properly test some
+  functionality.
 - Use [developer tools](https://developer.chrome.com/docs/devtools/device-mode/)
-and/or window resizing to simulate a mobile/tablet view.
+  and/or window resizing to simulate a mobile/tablet view.
 - The feedback sections (for positive feedback and constructive criticism) are
-extremely important. Please take your time with them.
+  extremely important. Please take your time with them.
 
 ## Judging Part 1 Submissions
 
@@ -101,7 +102,7 @@ Judging PS2 submissions is very similar to judging PS1 submissions.
 
 - One or more contiguous blocks of free time (usually an hour or less).
   - It is imperative that PS2 solutions are judged **as soon as possible**
-  (typically within 24 hours) due to scheduling constraints.
+    (typically within 24 hours) due to scheduling constraints.
 - A computer with internet access that you can install AWS WorkSpaces on.
 - The names and Reviewr submission data of the teams whose solutions you're
   responsible for judging.
@@ -161,10 +162,9 @@ corresponds with evaluating "PS2".
    > give your account tickets on an upcoming flight to test a check-in view.
 
 5. There is a live presentation/Q&A portion where students and judges will
-   converse with one-another about the solution. Use this presentation to
-   reivse your preliminary scoring if necessary. It is at this point you should
-   address any unanswered questions or nagging concerns directly with the
-   students.
+   converse with one-another about the solution. Use this presentation to revise
+   your preliminary scoring if necessary. It is at this point you should address
+   any unanswered questions or nagging concerns directly with the students.
 
 6. Submit your scores for this team through Reviewr. Be sure to add any issues
    you think the other judges should be made aware of to Reviewr's shared "judge
