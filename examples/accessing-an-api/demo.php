@@ -4,11 +4,11 @@ const APP_API_ROOT_URI = 'https://airports.api.hscc.bdpa.org/v1';
 
 echo ("loading...\n");
 
-$buildAPIURI = function ($endpoint) {
+$buildApiUri = function ($endpoint) {
     return APP_API_ROOT_URI . '/' . $endpoint;
 };
 
-$makeGETRequest = function ($url) use (&$makeGETRequest) {
+$makeGetRequest = function ($url) use (&$makeGetRequest) {
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -35,18 +35,18 @@ $makeGETRequest = function ($url) use (&$makeGETRequest) {
         return $json;
 
     else if ($status == 555)
-        return $makeGETRequest($url);
+        return $makeGetRequest($url);
 
     else
         throw new Exception("Bad API response (status $status): {$json['error']}");
 };
 
-$getAirports = function () use (&$makeGETRequest, &$buildAPIURI) {
-    return $makeGETRequest($buildAPIURI('info/airports'))['airports'];
+$getAirports = function () use (&$makeGetRequest, &$buildApiUri) {
+    return $makeGetRequest($buildApiUri('info/airports'))['airports'];
 };
 
 
-$searchFlights = function ($rawMatchCriteria = NULL, $afterId = NULL) use (&$makeGETRequest, &$buildAPIURI) {
+$searchFlights = function ($rawMatchCriteria = NULL, $afterId = NULL) use (&$makeGetRequest, &$buildApiUri) {
     $match = '';
     $after = '';
 
@@ -63,15 +63,15 @@ $searchFlights = function ($rawMatchCriteria = NULL, $afterId = NULL) use (&$mak
         $after = '&after=' . $afterId;
 
     $query = trim("$match$after", '&');
-    return $makeGETRequest($buildAPIURI("flights/search?$query"))['flights'];
+    return $makeGetRequest($buildApiUri("flights/search?$query"))['flights'];
 };
 
 $echoFlights = function ($flights) {
     foreach ($flights as $key => $flight) {
-        echo ("Flight ${flight['flightNumber']} from ${flight['comingFrom']} to ${flight['landingAt']} (${flight['type']}, ${flight['status']}) is at gate ${flight['gate']}");
+        echo ("Flight {$flight['flightNumber']} from {$flight['comingFrom']} to {$flight['landingAt']} ({$flight['type']}, {$flight['status']}) is at gate {$flight['gate']}");
 
         if ($flight['type'] == 'departure')
-            echo (" departing to ${flight['departingTo']}");
+            echo (" departing to {$flight['departingTo']}");
 
         echo "\n";
     }
@@ -83,7 +83,7 @@ try {
     $flights2 = $searchFlights(['status' => 'landed|arrived|boarding'], end($flights1)['flight_id']);
 
     echo ("\n10th airport:\n");
-    echo ("${tenthAp['name']} (${tenthAp['shortName']}) @ ${tenthAp['city']}, ${tenthAp['state']}\n");
+    echo ("{$tenthAp['name']} ({$tenthAp['shortName']}) @ {$tenthAp['city']}, {$tenthAp['state']}\n");
 
     echo ("\nFlights currently on the ground (landed, arrived, boarding):\n");
     echo ("[page 1]\n");
