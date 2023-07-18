@@ -5,7 +5,7 @@ These are instructions for how to judge part 1 and part 2 submissions.
 ## General advice
 
 - Be suspicious of front-end only authentication, or authentication schemes
-  implemented on the front-end that go through the application's backend first.
+  implemented on the front-end that **do not** go through the application's backend first.
 - Contact NHSCC staff via Slack if you need to manipulate data in the API
   backend (separate from the application's backend) to properly test some
   functionality.
