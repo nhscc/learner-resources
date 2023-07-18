@@ -64,30 +64,28 @@ const echoFlights = (flights) =>
     );
   });
 
-(async () => {
-  try {
-    const tenthAp = (await getAirports())[9];
-    const flights1 = await searchFlights({ status: 'landed|arrived|boarding' });
-    const flights2 = await searchFlights(
-      { status: 'landed|arrived|boarding' },
-      flights1.slice(-1).flight_id
-    );
+try {
+  const tenthAp = (await getAirports())[9];
+  const flights1 = await searchFlights({ status: 'landed|arrived|boarding' });
+  const flights2 = await searchFlights(
+    { status: 'landed|arrived|boarding' },
+    flights1.slice(-1).flight_id
+  );
 
-    console.info('\n10th airport:');
-    console.log(
-      `${tenthAp.name} (${tenthAp.shortName}) @ ${tenthAp.city}, ${tenthAp.state}`
-    );
+  console.info('\n10th airport:');
+  console.log(
+    `${tenthAp.name} (${tenthAp.shortName}) @ ${tenthAp.city}, ${tenthAp.state}`
+  );
 
-    console.info('\nFlights currently on the ground (landed, arrived, boarding):');
+  console.info('\nFlights currently on the ground (landed, arrived, boarding):');
 
-    console.info('[part1]');
-    echoFlights(flights1);
+  console.info('[part1]');
+  echoFlights(flights1);
 
-    console.info('[part2]');
-    echoFlights(flights2);
+  console.info('[part2]');
+  echoFlights(flights2);
 
-    // How might we get all the pages of results?
-  } catch (e) {
-    console.error(`ERROR (${e.res.statusCode}): ${e.error}`);
-  }
-})();
+  // How might we get all the pages of results?
+} catch (e) {
+  console.error(`ERROR (${e.res.statusCode}): ${e.error}`);
+}
