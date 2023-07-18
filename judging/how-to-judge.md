@@ -9,7 +9,7 @@ These are instructions for how to judge part 1 and part 2 submissions.
 - When testing asynchronous functionality where text on the webpage is supposed to update automatically, allow at least 60 seconds for your updates to appear.
 - Contact NHSCC staff via Slack if you need to manipulate data in the API
   backend (separate from the application's backend) to properly test some
-  functionality.
+  functionality, or if you encounter any issues or have any questions or concerns.
 - Use [developer tools](https://developer.chrome.com/docs/devtools/device-mode/)
   and/or window resizing to simulate a mobile/tablet view.
 - The feedback sections (for positive feedback and constructive criticism) are
