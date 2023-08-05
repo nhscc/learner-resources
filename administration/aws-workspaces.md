@@ -292,6 +292,9 @@ So far, they are:
 
 ### Example Nginx Configuration
 
+This is the configuration used during the 2022 competition. Each team's entry
+will have to be tweaked year over year.
+
 ```nginx
 ## Exposes external redirects to HSCC national competition PS solutions
 ## (HTTP 301s)
