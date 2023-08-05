@@ -119,7 +119,8 @@ Step 7: Cleanup WorkSpaces
 
    3. Disable UAC (User Account Control)
 
-      > start menu ⮕ type UAC ⮕ change UAC settings ⮕ set to "never notify"
+      > start menu ⮕ type "UAC" into search bar ⮕ select "Change User Account
+      > Control settings" ⮕ set to "never notify" and click "OK"
 
    4. Restart the WorkSpace.
 
@@ -216,4 +217,416 @@ WorkSpaces should be stopped and
 
 ## Making Team Solutions Accessible Over The Internet
 
-TODO
+> You can see why we require teams to make their solutions accessible at
+> `http://127.0.0.1:3000` [here](#example-nginx-configuration): doing so allows
+> us to easily apply the
+> [`sub_filter`](https://nginx.org/en/docs/http/ngx_http_sub_module.html) for
+> high-fidelity reverse-proxying.
+
+Usually the following process is completed by the chief judge. Though it is
+designed with specific systems in mind, the process can be applied to any
+web-visible system capable of serving requests via
+[Nginx](https://www.nginx.com/).
+
+1. Ensure DNS is configured (one three-letter subdomain per WorkSpace)
+
+2. Ensure Nginx is configured (reverse proxy for servers hosted on WorkSpaces)
+
+3. Ensure fault-tolerant SOCKS5 tunnels are established (one per WorkSpace)
+
+4. Ensure end-to-end fidelity
+
+### SOCKS5 Setup
+
+Requires existing `bdpa-submit` locked down user account on the server running
+Nginx (i.e. `XUNNPRIME`):
+
+```
+sudo adduser --system --no-group bdpa-submit
+sudo -u bdpa-submit mkdir /home/bdpa-submit/.ssh
+sudo -u bdpa-submit touch /home/bdpa-submit/.ssh/authorized_keys
+sn /home/bdpa-submit/.ssh/authorized_keys
+```
+
+1. Setup DNS CNAME records for `XXX.submissions.hscc.bdpa.org`. The record
+   should redirect to `prime.dns.xunn.io`
+
+2. On each WorkSpace:
+
+   1. Login to Discord in a private browsing instance.
+
+   2. [Download](https://github.com/PowerShell/Win32-OpenSSH/releases) and
+      unpack OpenSSH to desktop folder.
+
+   3. Open command prompt inside OpenSSH folder.
+
+   4. Create an SSH keypair and save it to this folder:
+      `ssh-keygen -t ed25519 -C XXX`
+
+   5. Add public key to `XUNNPRIME` `bdpa-submit` user's authorized keys.
+
+   6. Use ssh client to open tunnel between `XUNNPRIME` and the WorkSpace.
+      Example command (using port 8080):
+
+      ```
+      ssh -o ConnectTimeout=5 -o IdentityFile=D:\Users\20XX-XXXXXX\Desktop\OpenSSH-Win64\OpenSSH-Win64\id_ed25519 -CNR 80XX:127.0.0.1:3000 bdpa-submit@prime.dns.xunn.io
+      ```
+
+   7. Adjust apache/nginx/etc on the WorkSpace so that navigating to
+      `XXX.submissions.hscc.bdpa.org` lands on the solution's home page.
+
+### Well-Known Ports
+
+So far, they are:
+
+| TEAM | PORT |
+| :--: | :--: |
+| WDC  | 8080 |
+| MKE  | 8081 |
+| TWN  | 8082 |
+| ATL  | 8083 |
+| SMN  | 8084 |
+| STL  | 8085 |
+| NYC  | 8086 |
+| NOV  | 8087 |
+
+### Example Nginx Configuration
+
+```nginx
+## Exposes external redirects to HSCC national competition PS solutions
+## (HTTP 301s)
+##
+# https://nginx.org/en/docs/http/server_names.html
+#
+# Nginx says: when searching for a virtual server by name, if name matches more
+# than one of the specified variants, e.g. both wildcard name and regular
+# expression match, the first matching variant will be chosen, in the following
+# order of precedence:
+#
+# 1. exact name
+# 2. longest wildcard name starting with an asterisk, e.g. “*.example.org”
+# 3. longest wildcard name ending with an asterisk, e.g. “mail.*”
+# 4. first matching regular expression (in order of appearance in a
+#    configuration file)
+#
+# So, we declare these redirects as regular expressions so they're evaluated
+# last (after more important stuff like the mail.* catchall configs get a chance
+# to match).
+##
+
+## Submission portal redirect (currently pointing to Reviewr)
+server {
+    listen [::]:80;
+    server_name ~^(?<subdomain>.+\.)?submit.hscc.bdpa.org$;
+
+    location / {
+        return 301 https://my.reviewr.com/s2/site/BDPA_HSCC_2023;
+        access_log /var/log/nginx/.amalgum.access.log custom_super;
+        access_log /var/log/nginx/redirects.access.log custom_super;
+    }
+
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+    error_log  /var/log/nginx/redirects.error.log warn;
+}
+
+server {
+    listen [::]:443 ssl http2;
+    server_name ~^(?<subdomain>.+\.)?submit.hscc.bdpa.org$;
+
+    location / {
+        return 301 https://my.reviewr.com/s2/site/BDPA_HSCC_2023;
+        access_log /var/log/nginx/.amalgum.access.log custom_super;
+        access_log /var/log/nginx/redirects.local.access.log custom_super;
+    }
+
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+    error_log  /var/log/nginx/redirects.local.error.log warn;
+
+    ssl_certificate         /etc/letsencrypt/live/submit.hscc.bdpa.org/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/submit.hscc.bdpa.org/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/submit.hscc.bdpa.org/fullchain.pem;
+}
+
+# All traffic to these domains AND all subdomains is redirected upstream via
+# proxypass starting at port 8080
+
+## WDC
+server {
+    listen [::]:80;
+    server_name wdc.submissions.hscc.bdpa.org;
+    return 301 https://wdc.submissions.hscc.bdpa.org$request_uri;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+}
+
+server {
+    listen [::]:443 ssl http2;
+    server_name wdc.submissions.hscc.bdpa.org;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+
+    location / {
+        include /system/shared/nginx/directive-only/proxy-params.conf;
+        # Trailing slash is very important... for whatever reason (docs are bad)
+        proxy_pass http://localhost:8080/;
+	sub_filter '127.0.0.1:3000' 'wdc.submissions.hscc.bdpa.org';
+	sub_filter 'localhost:3000' 'wdc.submissions.hscc.bdpa.org';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+        sub_filter_types application/javascript application/json;
+    }
+
+    include /system/shared/nginx/standard.conf;
+
+    # Off for BDPA app sites
+    fastcgi_intercept_errors off;
+    proxy_intercept_errors off;
+
+    ssl_certificate         /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/submissions.hscc.bdpa.org/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+}
+
+## MKE
+server {
+    listen [::]:80;
+    server_name mke.submissions.hscc.bdpa.org;
+    return 301 https://mke.submissions.hscc.bdpa.org$request_uri;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+}
+
+server {
+    listen [::]:443 ssl http2;
+    server_name mke.submissions.hscc.bdpa.org;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+
+    # MKE has a really wonky setup. This lets us account for bad URLs to
+    # change stuff like /auth/auth/login (invalid) => /auth/login (valid)
+    location /auth {
+        rewrite /auth(/.*|$) /$1 last;
+    }
+
+    location / {
+        include /system/shared/nginx/directive-only/proxy-params.conf;
+        # Trailing slash is very important... for whatever reason (docs are bad)
+        proxy_pass http://localhost:8081/;
+        sub_filter '127.0.0.1:3000' 'mke.submissions.hscc.bdpa.org';
+        sub_filter 'localhost:3000' 'mke.submissions.hscc.bdpa.org';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+        sub_filter_types application/javascript application/json;
+    }
+
+    include /system/shared/nginx/standard.conf;
+
+    # Off for BDPA app sites
+    fastcgi_intercept_errors off;
+    proxy_intercept_errors off;
+
+    ssl_certificate         /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/submissions.hscc.bdpa.org/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+}
+
+## TWN
+server {
+    listen [::]:80;
+    server_name twn.submissions.hscc.bdpa.org;
+    return 301 https://twn.submissions.hscc.bdpa.org$request_uri;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+}
+
+server {
+    listen [::]:443 ssl http2;
+    server_name twn.submissions.hscc.bdpa.org;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+
+    location / {
+        include /system/shared/nginx/directive-only/proxy-params.conf;
+        # Trailing slash is very important... for whatever reason (docs are bad)
+        proxy_pass http://localhost:8082/;
+        sub_filter '127.0.0.1:3000' 'twn.submissions.hscc.bdpa.org';
+        sub_filter 'localhost:3000' 'twn.submissions.hscc.bdpa.org';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+        sub_filter_types application/javascript application/json;
+    }
+
+    include /system/shared/nginx/standard.conf;
+
+    # Off for BDPA app sites
+    fastcgi_intercept_errors off;
+    proxy_intercept_errors off;
+
+    ssl_certificate         /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/submissions.hscc.bdpa.org/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+}
+
+## ATL
+server {
+    listen [::]:80;
+    server_name atl.submissions.hscc.bdpa.org;
+    return 301 https://atl.submissions.hscc.bdpa.org$request_uri;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+}
+
+server {
+    listen [::]:443 ssl http2;
+    server_name atl.submissions.hscc.bdpa.org;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+
+    location / {
+        include /system/shared/nginx/directive-only/proxy-params-no-redirect.conf;
+        proxy_redirect http://localhost/ https://atl.submissions.hscc.bdpa.org/;
+        # Trailing slash is very important... for whatever reason (docs are bad)
+        proxy_pass http://localhost:8083/;
+        sub_filter '127.0.0.1:3000' 'atl.submissions.hscc.bdpa.org';
+        sub_filter 'localhost:3000' 'atl.submissions.hscc.bdpa.org';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+        sub_filter_types application/javascript application/json;
+    }
+
+    include /system/shared/nginx/standard.conf;
+
+    # Off for BDPA app sites
+    fastcgi_intercept_errors off;
+    proxy_intercept_errors off;
+
+    ssl_certificate         /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/submissions.hscc.bdpa.org/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+}
+
+## SMN
+server {
+    listen [::]:80;
+    server_name smn.submissions.hscc.bdpa.org;
+    return 301 https://smn.submissions.hscc.bdpa.org$request_uri;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+}
+
+server {
+    listen [::]:443 ssl http2;
+    server_name smn.submissions.hscc.bdpa.org;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+
+    location / {
+        include /system/shared/nginx/directive-only/proxy-params.conf;
+        # Trailing slash is very important... for whatever reason (docs are bad)
+        proxy_pass http://localhost:8084/;
+        sub_filter '127.0.0.1:3000' 'smn.submissions.hscc.bdpa.org';
+        sub_filter 'localhost:3000' 'smn.submissions.hscc.bdpa.org';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+        sub_filter_types application/javascript application/json;
+    }
+
+    include /system/shared/nginx/standard.conf;
+
+    # Off for BDPA app sites
+    fastcgi_intercept_errors off;
+    proxy_intercept_errors off;
+
+    ssl_certificate         /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/submissions.hscc.bdpa.org/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+}
+
+## STL
+server {
+    listen [::]:80;
+    server_name stl.submissions.hscc.bdpa.org;
+    return 301 https://stl.submissions.hscc.bdpa.org$request_uri;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+}
+
+server {
+    listen [::]:443 ssl http2;
+    server_name stl.submissions.hscc.bdpa.org;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+
+    location / {
+        include /system/shared/nginx/directive-only/proxy-params.conf;
+        # Trailing slash is very important... for whatever reason (docs are bad)
+        proxy_pass http://localhost:8085/;
+        sub_filter '127.0.0.1:3000' 'stl.submissions.hscc.bdpa.org';
+        sub_filter 'localhost:3000' 'stl.submissions.hscc.bdpa.org';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+        sub_filter_types application/javascript application/json;
+    }
+
+    include /system/shared/nginx/standard.conf;
+
+    # Off for BDPA app sites
+    fastcgi_intercept_errors off;
+    proxy_intercept_errors off;
+
+    ssl_certificate         /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/submissions.hscc.bdpa.org/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+}
+
+## NYC
+server {
+    listen [::]:80;
+    server_name nyc.submissions.hscc.bdpa.org;
+    return 301 https://nyc.submissions.hscc.bdpa.org$request_uri;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+}
+
+server {
+    listen [::]:443 ssl http2;
+    server_name nyc.submissions.hscc.bdpa.org;
+
+    access_log /var/log/nginx/.amalgum.access.log custom_super;
+    error_log  /var/log/nginx/.amalgum.error.log notice;
+
+    location / {
+        include /system/shared/nginx/directive-only/proxy-params.conf;
+        # Trailing slash is very important... for whatever reason (docs are bad)
+        proxy_pass http://localhost:8086/;
+        sub_filter '127.0.0.1:3000' 'nyc.submissions.hscc.bdpa.org';
+        sub_filter 'localhost:3000' 'nyc.submissions.hscc.bdpa.org';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+        sub_filter_types application/javascript application/json;
+    }
+
+    include /system/shared/nginx/standard.conf;
+
+    # Off for BDPA app sites
+    fastcgi_intercept_errors off;
+    proxy_intercept_errors off;
+
+    ssl_certificate         /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+    ssl_certificate_key     /etc/letsencrypt/live/submissions.hscc.bdpa.org/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/submissions.hscc.bdpa.org/fullchain.pem;
+}
+```
