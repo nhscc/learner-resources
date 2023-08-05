@@ -5,11 +5,14 @@ These are instructions for how to judge part 1 and part 2 submissions.
 ## General advice
 
 - Be suspicious of front-end only authentication, or authentication schemes
-  implemented on the front-end that **do not** go through the application's backend first.
-- When testing asynchronous functionality where text on the webpage is supposed to update automatically, allow at least 60 seconds for your updates to appear.
+  implemented on the front-end that **do not** go through the application's
+  backend first.
+- When testing asynchronous functionality where text on the webpage is supposed
+  to update automatically, allow at least 60 seconds for your updates to appear.
 - Contact NHSCC staff via Slack if you need to manipulate data in the API
   backend (separate from the application's backend) to properly test some
-  functionality, or if you encounter any issues or have any questions or concerns.
+  functionality, or if you encounter any issues or have any questions or
+  concerns.
 - Use [developer tools](https://developer.chrome.com/docs/devtools/device-mode/)
   and/or window resizing to simulate a mobile/tablet view.
 - The feedback sections (for positive feedback and constructive criticism) are
