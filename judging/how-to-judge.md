@@ -75,16 +75,21 @@ follow these steps first and watch the presentation video only after step 4.**
    assigning scores to each requirement/category. Let us know of any
    difficulties you encounter or concerns you have through Slack.
 
-   > Note: if you need to, you can download extra programs like VS Code if it
+   > Note 1: if you need to, you can download extra programs like VS Code if it
    > makes judging a team's solution easier for you.
 
-   > **You should not modify any solution's source code.** If a solution does
-   > not work for whatever reason, or if functionality cannot be verified (e.g.
-   > if the login screen is broken and you can't access the rest of the app),
-   > solutions should be scored 0 for all affected requirements.
-
+   > Note 2: **You should not modify any solution's source code.** If a solution
+   > does not work for whatever reason, or if functionality cannot be verified
+   > (e.g. if the login screen is broken and you can't access the rest of the
+   > app), solutions should be scored ZERO (0) for all affected requirements.
+   >
    > However, **you can modify data in a solution's database**. For example: to
    > give your account tickets on an upcoming flight to test a check-in view.
+
+   > Note 3: When it comes to judging asynchronous update requirements (i.e.
+   > interfaces with content that changes without the page refreshing), judges
+   > should give a team's app at least 60 seconds to reflect any relevant
+   > changes in system state.
 
 5. Once you are done with your preliminary scoring, and only if you haven't
    already, watch the presentation video submitted by this team. Revise any
