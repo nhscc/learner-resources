@@ -12,25 +12,29 @@ necessary. This is facilitated via a seven step process:
 
 <small> -- must be completed at least two weeks before the due date of PS1 --
 </small> \
-Step 1: Setup "AWSWS" Worksheet in the HSCC Tracking Document \
-Step 2: Setup WorkSpaces on AWS \
-Step 3: Finalize Budget and Distribute Phase 1 Credentials
+[Step 1: Setup "AWSWS" Worksheet in the HSCC Tracking Document](#step-1-setup-awsws-worksheet-in-the-hscc-tracking-document)
+\
+[Step 2: Setup WorkSpaces on AWS](#step-2-setup-workspaces-on-aws) \
+[Step 3: Finalize Budget and Distribute Phase 1 Credentials](#step-3-finalize-budget-and-distribute-phase-1-credentials)
 
 <small> -- must be completed when the PS1 submission window closes and phase 1
 ends -- </small> \
-Step 4: End Phase 1
+[Step 4: End Phase 1](#step-4-end-phase-1)
 
 <small> -- must be completed at least 30 minutes before phase 2 (and the HSCC
 competition) begins -- </small> \
-Step 5: Prepare for Phase 2
+[Step 5: Prepare for Phase 2](#step-5-prepare-for-phase-2)
 
 <small> -- must be completed after phase 2 ends (i.e. after the extra 1 hour
 submission allowance) -- </small> \
-Step 6: End Phase 2
+[Step 6: End Phase 2](#step-6-end-phase-2)
+
+<small> -- must be completed after team presentation phase ends -- </small> \
+[Step 7: Set WorkSpaces Final Password](#step-7-set-workspaces-final-password)
 
 <small> -- must be completed after the conference ends (usually around a month
 after) -- </small> \
-Step 7: Cleanup WorkSpaces
+[Step 8: Cleanup WorkSpaces](#step-8-cleanup-workspaces)
 
 ### Step 1: Setup "AWSWS" Worksheet in the HSCC Tracking Document
 
@@ -56,6 +60,12 @@ Step 7: Cleanup WorkSpaces
      secure 30-character password and it must not be reused year-to-year. This
      password is used by judges to access the workspaces after submissions have
      closed for a phase.
+
+   - Ensure one row exists for the **final password**. This should be a random
+     30-character password and it must not be reused year-to-year. This password
+     is what the WorkSpaces are set to use after the PS2 presentations conclude.
+     It is important that this password is never given out or known outside of
+     the national HSCC immediate staff.
 
 ### Step 2: Setup WorkSpaces on AWS
 
@@ -203,11 +213,22 @@ WorkSpaces instances. Specifically:
 2. WorkSpaces (except the NHSCC WorkSpace) must be
    [rebooted](https://docs.aws.amazon.com/workspaces/latest/adminguide/reboot-workspaces.html).
 
-3. Each WorkSpace must be
-   [configured to serve requests from the https://xxx.submissions.hscc.bdpa.org domain](#making-team-solutions-accessible-over-the-internet).
-   This is usually handled by the chief judge.
+### Step 7: Set WorkSpaces Final Password
 
-### Step 7: Cleanup WorkSpaces
+Once the presentation phase of the competition ends, and teams/judges are no
+longer allowed to interact with the WorkSpaces, everyone except NHSCC staff must
+be locked out of all WorkSpaces instances. Specifically:
+
+1. All WorkSpaces passwords (except the NHSCC WorkSpace) must be
+   [reset](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_manage_users_groups_reset_password.html)
+   to the same **final** password. This can be done quickly from the
+   "Directories" tab in the side bar.
+
+> Additionally, each WorkSpace must be
+> [configured to serve requests from the https://xxx.submissions.hscc.bdpa.org domain](#making-team-solutions-accessible-over-the-internet).
+> This part is usually handled by the chief judge.
+
+### Step 8: Cleanup WorkSpaces
 
 Around a month after the conference ends and inline with the "stop time"
 determined in
