@@ -184,6 +184,8 @@ window closes:
 2. WorkSpaces (except the NHSCC WorkSpace) must be
    [rebooted](https://docs.aws.amazon.com/workspaces/latest/adminguide/reboot-workspaces.html).
 
+> **At this point, this chief judge should look for foreign private keys or other evidence of illegal remote access and penalize/disqualify teams as appropriate.**
+
 ### Step 5: Prepare for Phase 2
 
 Some time after judging for PS1 concludes, and **at least 30 minutes before
@@ -227,6 +229,8 @@ be locked out of all WorkSpaces instances. Specifically:
 > Additionally, each WorkSpace must be
 > [configured to serve requests from the https://xxx.submissions.hscc.bdpa.org domain](#making-team-solutions-accessible-over-the-internet).
 > This part is usually handled by the chief judge.
+
+> **At this point, you should look for foreign private keys or other evidence of illegal remote access and penalize/disqualify teams as appropriate.**
 
 ### Step 8: Cleanup WorkSpaces
 
