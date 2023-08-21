@@ -36,6 +36,9 @@ submission allowance) -- </small> \
 after) -- </small> \
 [Step 8: Cleanup WorkSpaces](#step-8-cleanup-workspaces)
 
+<small> -- must be completed by the chief judge after step #8 -- </small> \
+[Step 9: Prune Private Keys](#step-9-prune-private-keys)
+
 ### Step 1: Setup "AWSWS" Worksheet in the HSCC Tracking Document
 
 1. Gain access to this year's "HSCC 2XXX Tracking" document on Google Drive.
@@ -184,7 +187,9 @@ window closes:
 2. WorkSpaces (except the NHSCC WorkSpace) must be
    [rebooted](https://docs.aws.amazon.com/workspaces/latest/adminguide/reboot-workspaces.html).
 
-> **At this point, this chief judge should look for foreign private keys or other evidence of illegal remote access and penalize/disqualify teams as appropriate.**
+> **At this point, this chief judge should look for foreign private keys or
+> other evidence of illegal remote access and penalize/disqualify teams as
+> appropriate.**
 
 ### Step 5: Prepare for Phase 2
 
@@ -230,7 +235,8 @@ be locked out of all WorkSpaces instances. Specifically:
 > [configured to serve requests from the https://xxx.submissions.hscc.bdpa.org domain](#making-team-solutions-accessible-over-the-internet).
 > This part is usually handled by the chief judge.
 
-> **At this point, you should look for foreign private keys or other evidence of illegal remote access and penalize/disqualify teams as appropriate.**
+> **At this point, you should look for foreign private keys or other evidence of
+> illegal remote access and penalize/disqualify teams as appropriate.**
 
 ### Step 8: Cleanup WorkSpaces
 
@@ -239,6 +245,11 @@ determined in
 [Step 3](#step-3-finalize-budget-and-distribute-phase-1-credentials), all
 WorkSpaces should be stopped and
 [permanently deleted](https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces.html).
+
+### Step 9: Prune Private Keys
+
+Delete any BDPA-specific private keys from the Nginx server responsible for
+serving requests.
 
 ## Making Team Solutions Accessible Over The Internet
 
