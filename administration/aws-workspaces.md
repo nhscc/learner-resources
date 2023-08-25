@@ -268,7 +268,7 @@ web-visible system capable of serving requests via
 
 2. Ensure Nginx is configured (reverse proxy for servers hosted on WorkSpaces)
 
-3. Ensure fault-tolerant SOCKS5 tunnels are established (one per WorkSpace)
+3. Ensure SOCKS5 tunnels are established (one per WorkSpace)
 
 4. Ensure end-to-end fidelity
 
@@ -289,31 +289,27 @@ sn /home/bdpa-submit/.ssh/authorized_keys
 
 2. On each WorkSpace:
 
-   1. Login to Discord in a private browsing instance.
+   1. Ensure WorkSpace has `ssh` and `ssh-keygen` installed and available from
+      CLI (probably PowerShell)
 
-   2. [Download](https://github.com/PowerShell/Win32-OpenSSH/releases) and
-      unpack OpenSSH to desktop folder.
-
-   3. Open command prompt inside OpenSSH folder.
-
-   4. Create an SSH keypair and save it to this folder:
+   2. Create an SSH key-pair and save it to this folder:
       `ssh-keygen -t ed25519 -C XXX`
 
-   5. Add public key to `XUNNPRIME` `bdpa-submit` user's authorized keys.
+   3. Add public key to `XUNNPRIME` `bdpa-submit` user's authorized keys.
 
-   6. Use ssh client to open tunnel between `XUNNPRIME` and the WorkSpace.
+   4. Use ssh client to open tunnel between `XUNNPRIME` and the WorkSpace.
       Example command (using port 8080):
 
       ```
       ssh -o ConnectTimeout=5 -o IdentityFile=D:\Users\20XX-XXXXXX\Desktop\OpenSSH-Win64\OpenSSH-Win64\id_ed25519 -CNR 80XX:127.0.0.1:3000 bdpa-submit@prime.dns.xunn.io
       ```
 
-   7. Adjust apache/nginx/etc on the WorkSpace so that navigating to
+   5. Adjust apache/nginx/etc on the WorkSpace so that navigating to
       `XXX.submissions.hscc.bdpa.org` lands on the solution's home page.
 
 ### Well-Known Ports
 
-The current HTTP proxy ports are:
+The current TCP proxy ports (supporting HTTP, websockets, etc) are:
 
 | TEAM | PORT |
 | :--: | :--: |
@@ -326,21 +322,8 @@ The current HTTP proxy ports are:
 | NYC  | 8086 |
 | NOV  | 8087 |
 
-The current WebSocket (WSS) proxy ports are:
-
-| TEAM | PORT  |
-| :--: | :---: |
-| WDC  | 18080 |
-| MKE  | 18081 |
-| TWN  | 18082 |
-| ATL  | 18083 |
-| SMN  | 18084 |
-| STL  | 18085 |
-| NYC  | 18086 |
-| NOV  | 18087 |
-
 ### Example Nginx Configuration
 
-You can see the various Nginx configurations used over the years in the
+You can see the various Nginx configurations used over the years
 [here](./nginx). It is likely that various teams' entries will have to be
 tweaked year over year.
