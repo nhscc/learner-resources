@@ -16,7 +16,7 @@ const rankings = [
     'option-6': 3,
     'option-7': 6,
     'option-8': 7,
-    'option-9': 5
+    'option-9': 4
   },
   {
     'option-1': 1,
