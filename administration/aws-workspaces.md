@@ -93,7 +93,7 @@ after) -- </small> \
      year).
 
      - Select Windows OS, smallest drive sizes, without Microsoft Office or any
-       other software.
+       other software. **DO NOT use PCoIP protocol, use the modern one.**
 
    - Select the "always on" WorkSpaces, not the "auto stop" WorkSpaces.
 
