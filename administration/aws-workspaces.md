@@ -328,6 +328,7 @@ The current TCP proxy ports (supporting HTTP, websockets, etc) are:
 | NOV  | 8087 |
 | CLE  | 8088 |
 | BAL  | 8089 |
+| IND  | 8090 |
 
 ### Example Nginx Configuration
 
