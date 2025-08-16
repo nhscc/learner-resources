@@ -296,15 +296,20 @@ sn /home/bdpa-submit/.ssh/authorized_keys
       `ssh-keygen -t ed25519 -C XXX`
 
    3. Add public key to `XUNNPRIME` `bdpa-submit` user's authorized keys.
-
-   4. Use ssh client to open tunnel between `XUNNPRIME` and the WorkSpace.
-      Example command (using port 8080):
+      Example command (probably PowerShell):
 
       ```
-      ssh -o ConnectTimeout=5 -o IdentityFile=D:\Users\20XX-XXXXXX\Desktop\OpenSSH-Win64\OpenSSH-Win64\id_ed25519 -CNR 80XX:127.0.0.1:3000 bdpa-submit@prime.dns.xunn.io
+      cat ${HOME}/.ssh/id_ed25519.pub
       ```
 
-   5. Adjust apache/nginx/etc on the WorkSpace so that navigating to
+   5. Use ssh client to open tunnel between `XUNNPRIME` and the WorkSpace.
+      Example command (using port 80XX):
+
+      ```
+      ssh -o ConnectTimeout=5 -o IdentityFile=${HOME}/.ssh/id_ed25519 -CNR 80XX:127.0.0.1:3000 bdpa-submit@prime.dns.xunn.io
+      ```
+
+   6. Adjust apache/nginx/kestrel/django/etc on the WorkSpace so that navigating to
       `XXX.submissions.hscc.bdpa.org` lands on the solution's home page.
 
 ### Well-Known Ports
